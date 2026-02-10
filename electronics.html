@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electronics Projects — Earthquake Monitoring Seismograph</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" href="Porfolio_Image.png" type="image/png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #0f172a;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(34, 197, 94, 0.2);
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #22c55e;
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: #22c55e;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        main {
+            min-height: calc(100vh - 140px);
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #22c55e, #4dd0e1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 3rem;
+            max-width: 600px;
+        }
+
+        .project-showcase {
+            margin-bottom: 4rem;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(34, 197, 94, 0.5);
+            transform: translateY(-5px);
+        }
+
+        .project-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #22c55e;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .project-description {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .project-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+        }
+
+        .feature-tag {
+            background: rgba(34, 197, 94, 0.15);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #22c55e;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .gallery-item {
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            border-color: rgba(34, 197, 94, 0.6);
+            box-shadow: 0 10px 30px rgba(34, 197, 94, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            margin-bottom: 2rem;
+        }
+
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .specs-section {
+            background: rgba(34, 197, 94, 0.05);
+            border-left: 3px solid #22c55e;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .specs-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #22c55e;
+        }
+
+        .specs-list {
+            list-style: none;
+        }
+
+        .specs-list li {
+            padding: 0.8rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .specs-list li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #22c55e;
+            font-weight: bold;
+        }
+
+        .site-footer {
+            background: rgba(15, 23, 42, 0.9);
+            border-top: 1px solid rgba(34, 197, 94, 0.2);
+            padding: 2rem 0;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 900px) {
+            .section-title {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            .image-gallery {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1rem;
+            }
+
+            .gallery-item img {
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 800px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            .nav-container {
+                padding: 0 16px;
+            }
+
+            .section-title {
+                font-size: 1.7rem;
+                margin-bottom: 2rem;
+            }
+
+            main {
+                padding: 2.5rem 0;
+            }
+
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .project-card {
+                padding: 1.5rem;
+            }
+
+            .image-gallery {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 1rem;
+            }
+
+            .gallery-item img {
+                height: 150px;
+            }
+
+            .specs-section,
+            .how-it-works {
+                padding: 1.5rem;
+            }
+
+            .specs-list li {
+                margin-bottom: 0.75rem;
+                font-size: 0.9rem;
+            }
+
+            .video-container {
+                aspect-ratio: 16/9;
+                height: 220px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .project-card {
+                padding: 1.5rem;
+            }
+
+            .image-gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .specs-section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ===================== HEADER ===================== -->
+    <header class="site-header">
+        <div class="nav-container">
+            <a href="index.html" class="logo"><i class="fas fa-code"></i> Portfolio</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="About.html">About</a></li>
+                    <li><a href="skils.html">Skills</a></li>
+                    <li><a href="program.html">C Programming</a></li>
+                    <li><a href="HTML.html">HTML</a></li>
+                    <li><a href="CSS.html">CSS</a></li>
+                    <li><a href="electronics.html">Electronics</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===================== MAIN CONTENT ===================== -->
+    <main class="container">
+        <section class="project-showcase">
+            <h1 class="section-title">⚡ Electronics Projects</h1>
+            <p class="section-subtitle">Advanced earthquake monitoring and seismographic measurement systems built with precision electronics and innovative sensor technology</p>
+
+            <!-- ===== PROJECT 1: SEISMOGRAPH ===== -->
+            <div class="project-card">
+                <h2 class="project-title">
+                    <i class="fas fa-wave-square"></i> Earthquake Monitoring Seismograph
+                </h2>
+
+                <p class="project-description">
+                    A sophisticated electronic seismograph system designed to detect and measure seismic activity. This project demonstrates advanced understanding of sensor integration, signal processing, and real-time data visualization. The system captures minute vibrations through precision accelerometers and processes them using custom electronics for accurate earthquake detection and magnitude estimation.
+                </p>
+
+                <div class="project-features">
+                    <span class="feature-tag">Accelerometer Sensors</span>
+                    <span class="feature-tag">Signal Processing</span>
+                    <span class="feature-tag">Data Logging</span>
+                    <span class="feature-tag">Real-time Monitoring</span>
+                    <span class="feature-tag">Precision Calibration</span>
+                </div>
+
+                <!-- Key Specifications -->
+                <div class="specs-section">
+                    <h3 class="specs-title">📊 System Specifications</h3>
+                    <ul class="specs-list">
+                        <li>Dual-axis accelerometer for precise XY vibration detection</li>
+                        <li>High-resolution analog-to-digital conversion for data accuracy</li>
+                        <li>Embedded signal filtering to reduce noise and interference</li>
+                        <li>Real-time data logging with timestamp synchronization</li>
+                        <li>Calibration system for sensor accuracy validation</li>
+                        <li>Visual output display showing seismic wave patterns</li>
+                        <li>Custom PCB design with optimized component placement</li>
+                    </ul>
+                </div>
+
+                <!-- Project Gallery -->
+                <h3 style="font-size: 1.3rem; color: #22c55e; margin-bottom: 1rem; margin-top: 1rem;">
+                    <i class="fas fa-images"></i> Project Gallery
+                </h3>
+                <div class="image-gallery">
+                    <div class="gallery-item">
+                        <img src="seismograph1.jpeg" alt="Seismograph System Assembly">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="seismograph2.jpeg" alt="Sensor Component Details">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="seismograph3.jpeg" alt="Calibration Setup">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="seismograph4.jpeg" alt="Data Visualization Display">
+                    </div>
+                </div>
+
+                <!-- Video Demonstration -->
+                <h3 style="font-size: 1.3rem; color: #22c55e; margin-bottom: 1rem;">
+                    <i class="fas fa-video"></i> Live Demonstration
+                </h3>
+                <div class="video-container">
+                    <video controls>
+                        <source src="seismograph5.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+
+                <!-- How It Works -->
+                <div class="specs-section" style="background: rgba(77, 208, 225, 0.05); border-left-color: #4dd0e1;">
+                    <h3 class="specs-title" style="color: #4dd0e1;">🔧 How It Works</h3>
+                    <ul class="specs-list">
+                        <li><strong>Detection Phase:</strong> Accelerometers sense minute vibrations in X and Y axes with sensitivity up to 0.001g</li>
+                        <li><strong>Signal Processing:</strong> Analog signals are amplified and filtered to remove environmental noise</li>
+                        <li><strong>Digitization:</strong> 12-bit ADC converts analog signals to digital data at 100 Hz sampling rate</li>
+                        <li><strong>Analysis:</strong> Microcontroller analyzes wave patterns and calculates seismic parameters</li>
+                        <li><strong>Visualization:</strong> Real-time display shows seismic waveforms and event markers</li>
+                        <li><strong>Logging:</strong> All data stored with precise timestamps for post-event analysis</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ===== COMING SOON ===== -->
+            <div class="project-card">
+                <h2 class="project-title">
+                    <i class="fas fa-hourglass-end"></i> More Electronics Projects
+                </h2>
+                <p class="project-description">
+                    Additional electronics and embedded systems projects coming soon. Including IoT sensor networks, wireless communication systems, and advanced instrumentation projects.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="site-footer">
+        <div class="container">
+            © <span id="year">2026</span> ABHIN JOE SAJI — Electronics & Embedded Systems Portfolio
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

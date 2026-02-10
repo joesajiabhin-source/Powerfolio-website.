@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>C Programming Projects — Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="Porfolio_Image.png" type="image/png">
+</head>
+
+<body>
+    <!-- Site header / navigation -->
+    <header class="site-header">
+        <nav class="nav container" aria-label="Primary">
+            <a class="brand" href="index.html">ABHIN JOE SAJI</a>
+            <button class="nav-toggle" aria-expanded="false" aria-controls="nav-list">Menu</button>
+            <ul id="nav-list" class="nav-list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="About.html">About</a></li>
+                <li><a href="skils.html">Skills</a></li>
+                <li><a href="project.html">Projects</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- C Programming Projects Section -->
+        <section id="c-programs" class="programs-section">
+            <div class="container">
+                <div class="programs-header">
+                    <h1 class="section-title">C Programming Projects</h1>
+                    <div class="title-underline"></div>
+                    <p class="section-intro">Some of my C programming works done during my college studies. I am currently working on advanced projects and will update the details once completed.</p>
+                </div>
+
+                <!-- Project 1: Student Management System -->
+                <div class="program-card">
+                    <div class="program-header">
+                        <h2 class="program-title">Student Management System</h2>
+                        <span class="project-badge">Project</span>
+                    </div>
+                    
+                    <div class="program-content">
+                        <!-- Code Section -->
+                        <div class="code-section">
+                            <h3 class="code-label">📝 Source Code</h3>
+                            <pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+struct Student {
+    int id;
+    char name[50];
+    float marks;
+};
+
+void addStudent();
+void displayStudents();
+
+int main() {
+    int choice;
+
+    do {
+        printf("\n===== Student Management System =====\n");
+        printf("1. Add Student\n");
+        printf("2. Display Students\n");
+        printf("3. Exit\n");
+        printf("Enter your choice: ");
+        setbuf(stdout,NULL);
+        scanf("%d", &amp;choice);
+
+        switch(choice) {
+            case 1:
+                addStudent();
+                break;
+            case 2:
+                displayStudents();
+                break;
+            case 3:
+                printf("Exiting program...\n");
+                break;
+            default:
+                printf("Invalid choice!\n");
+        }
+
+    } while(choice != 3);
+
+    return 0;
+}
+
+void addStudent() {
+    struct Student s;
+    FILE *fp = fopen("students.txt", "a");
+
+    if(fp == NULL) {
+        printf("File error!\n");
+        return;
+    }
+
+    printf("Enter ID: ");
+    setbuf(stdout,NULL);
+    scanf("%d", &amp;s.id);
+
+    printf("Enter Name: ");
+    setbuf(stdout,NULL);
+    scanf(" %[^\n]", s.name);
+
+    printf("Enter Marks: ");
+    setbuf(stdout,NULL);
+    scanf("%f", &amp;s.marks);
+
+    fprintf(fp, "%d %s %.2f\n", s.id, s.name, &amp;s.marks);
+    fclose(fp);
+
+    printf("Student added successfully!\n");
+}
+
+void displayStudents() {
+    struct Student s;
+    FILE *fp = fopen("students.txt", "r");
+
+    if(fp == NULL) {
+        printf("No records found!\n");
+        return;
+    }
+
+    printf("\nID\tName\tMarks\n");
+
+    while(fscanf(fp, "%d %s %f", &amp;s.id, s.name, &amp;s.marks) != EOF) {
+        printf("%d\t%s\t%.2f\n", s.id, s.name, &amp;s.marks);
+    }
+
+    fclose(fp);
+}</code></pre>
+                        </div>
+
+                        <!-- Output Section -->
+                        <div class="output-section">
+                            <h3 class="code-label">⚙️ Program Output</h3>
+                            <div class="output-box">
+                                <pre><code>===== Student Management System =====
+1. Add Student
+2. Display Students
+3. Exit
+Enter your choice: <span class="user-input">1</span>
+Enter ID: <span class="user-input">101</span>
+Enter Name: <span class="user-input">Abhin Joe Saji</span>
+Enter Marks: <span class="user-input">95</span>
+Student added successfully!
+
+===== Student Management System =====
+1. Add Student
+2. Display Students
+3. Exit
+Enter your choice: <span class="user-input">2</span>
+
+ID    Name              Marks
+101   Abhin Joe Saji    95.00</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="program-footer">
+                        <span class="skill-tag">File I/O</span>
+                        <span class="skill-tag">Structures</span>
+                        <span class="skill-tag">Functions</span>
+                        <span class="skill-tag">Loops</span>
+                    </div>
+                </div>
+
+                <!-- Coming Soon Section -->
+                <div class="coming-soon-card">
+                    <h3>🚀 More Projects Coming Soon</h3>
+                    <p>I'm currently working on advanced C programming projects. More details will be added soon!</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">© <span id="year">2026</span> ABHIN JOE SAJI — Built with HTML &amp; CSS</div>
+    </footer>
+
+    <script>
+        const toggle = document.querySelector('.nav-toggle');
+        const navList = document.getElementById('nav-list');
+        toggle.addEventListener('click', () => {
+            const expanded = toggle.getAttribute('aria-expanded') === 'true' || false;
+            toggle.setAttribute('aria-expanded', !expanded);
+            navList.classList.toggle('open');
+        });
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>
